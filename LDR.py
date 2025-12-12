@@ -59,4 +59,14 @@ class I2C_ADS_LDR:
             sensor_values.append(self.read_one(ch))
         self.sensor_values = sensor_values
         return sensor_values
+    
+    def see_line(self):
+        sensor_values = self.read_all()
+        see_black = []
+        for val in sensor_values:
+            if val > 100:
+                see_black.append(False)
+            else:
+                see_black.append(True)
+        return see_black
 
