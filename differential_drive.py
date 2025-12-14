@@ -1,4 +1,4 @@
-from stepper_motor2 import StepperMotor
+from stepper_motor import StepperMotor
 from machine import Timer
 import time
 import math
@@ -30,10 +30,10 @@ class DifferentialDrive:
 
         self.status = DifferentialDrive.STATUS_IDLE
 
-    def set_speed(self, left, right):
+    def set_speed(self, left_speed, right_speed):
         tim.deinit()
-        self.left.set_speed(left)
-        self.right.set_speed(right)
+        self.left.set_speed(left_speed)
+        self.right.set_speed(right_speed)
         tim.init(period=1, mode=Timer.PERIODIC, callback=self.drive)
 
     def drive(self, timer):
@@ -74,3 +74,8 @@ class DifferentialDrive:
 
         steps = abs(round(WHEEL_BASE_CIRCUMFERENCE_STEPS * degrees / 360))
         self.move_steps(steps, left_speed=speed, right_speed= -speed)
+
+    def accelerate(self, terminal_speed):
+        for i in range(terminal_speed-1):
+            self.set_speed(i, i)
+            time.sleep_us(100)
