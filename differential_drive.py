@@ -32,8 +32,9 @@ class DifferentialDrive:
 
     def set_speed(self, left_speed, right_speed):
         tim.deinit()
-        self.left.set_speed(left_speed)
-        self.right.set_speed(right_speed)
+        # the direction of travel is in this case reveresed from the way stepper motor class is designed.
+        self.left.set_speed(-left_speed) 
+        self.right.set_speed(-right_speed)
         tim.init(period=1, mode=Timer.PERIODIC, callback=self.drive)
 
     def drive(self, timer):
@@ -76,6 +77,13 @@ class DifferentialDrive:
         self.move_steps(steps, left_speed=speed, right_speed= -speed)
 
     def accelerate(self, terminal_speed):
-        for i in range(terminal_speed-1):
-            self.set_speed(i, i)
-            time.sleep_us(100)
+        # no neeed to "slowly" accelerate to speed 7 
+        if abs(terminal_speed) <= 7:
+            self.set_speed(terminal_speed, terminal_speed)
+        else:
+            direction = 1
+            if terminal_speed < 0:
+                direction = -1
+            for i in range(7, abs(terminal_speed)+1):
+                self.set_speed(i*direction, i*direction)
+                time.sleep_us(100)
