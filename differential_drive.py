@@ -87,3 +87,16 @@ class DifferentialDrive:
             for i in range(7, abs(terminal_speed)+1):
                 self.set_speed(i*direction, i*direction)
                 time.sleep_us(100000) #0.1 seconds 
+    
+    #only forward
+    def left_accelerate(self):
+        for i in range(7, 10):
+            self.set_speed(i, i)
+            time.sleep_us(100000) #0.1 seconds 
+        self.set_speed(10, 9)
+    
+    def right_accelerate(self):
+        for i in range(7, 10):
+            self.set_speed(i, i)
+            time.sleep_us(100000) #0.1 seconds 
+        self.set_speed(9, 10)
