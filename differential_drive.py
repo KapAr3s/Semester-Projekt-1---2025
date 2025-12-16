@@ -86,4 +86,4 @@ class DifferentialDrive:
                 direction = -1
             for i in range(7, abs(terminal_speed)+1):
                 self.set_speed(i*direction, i*direction)
-                time.sleep_us(100)
+                time.sleep_us(100000) #0.1 seconds 
