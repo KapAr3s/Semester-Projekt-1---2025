@@ -180,7 +180,8 @@ def function4():
                 while diff_drive.status == diff_drive.STATUS_JOB:
                     time.sleep(0.1)
 
-def function5():
+#Function 5 is a early version, to test some things for the course. It is not used in the final product
+def function5(): 
     global bolt_count
     diff_drive.turn_in_place(-45,5)
     while diff_drive.status == diff_drive.STATUS_JOB:
@@ -211,7 +212,7 @@ def function5():
             if n == 2:
                 return None
             
-def function52():
+def function5v2():
     global bolt_count
     global circle
     diff_drive.turn_in_place(-45,5)
@@ -254,7 +255,7 @@ def function52():
                     
             
         
-def function62():
+def function6v2():
     notDone = True
     diff_drive.set_speed(7,7)
     time.sleep(0.5)
@@ -284,7 +285,7 @@ def function62():
         
     
 
-def function72():
+def function7v2():
     diff_drive.destroy()
     global bolt_count
     notDone = True
@@ -317,8 +318,8 @@ def function72():
     
             
             
-            
     
+# The next functions, are not used in the final competetion, because we did not have enough time to test them out.
     
     
             
@@ -518,6 +519,8 @@ function4()
 function52()
 function62()
 function72()
+
+# We did not have enough time, to test and integrate the last functions for the course.
 """if not fail6:
     function7()
 function8()
@@ -526,4 +529,5 @@ function10()
 function11()
 function12()
 diff_drive.destroy()"""
+
 
