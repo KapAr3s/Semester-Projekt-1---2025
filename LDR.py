@@ -9,7 +9,15 @@ class I2C_ADS_LDR:
         self._w = bytearray(1) # ADS expects 1 byte format
         self._r = bytearray(1) # Also we don't allocate new
                 #byte each time but reuse the same
-                
+        self.readings = []
+        self.turn = False
+        self.curent_avg = []
+        self.last_instructs = []
+        
+        for _ in channels:
+            self.readings.append([100,100,100])
+            
+            
         self.sensor_values = [0]*len(channels)
 
         self.tsStart = time.ticks_ms()

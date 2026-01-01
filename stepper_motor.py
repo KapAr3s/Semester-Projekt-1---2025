@@ -4,7 +4,7 @@ PWM_MAX = 65535
 
 class StepperMotor:
 
-  def __init__(self, pins, pwm_pct = 0.15, frequency=18_000):
+  def __init__(self, pins, pwm_pct = 0.15, frequency=36_000):
     self.direction = 0
     self.sequence = [[0,0,0,0]]
     self.odometer = 0
